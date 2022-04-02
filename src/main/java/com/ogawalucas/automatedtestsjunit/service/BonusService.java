@@ -9,8 +9,8 @@ public class BonusService {
     public BigDecimal calculate(Employee employee) {
         var bonus = employee.getSalary().multiply(new BigDecimal("0.1"));
 
-        if (bonus.compareTo(new BigDecimal("1000")) > 0) {
-            return BigDecimal.ZERO;
+        if (!employee.isValidSalaryToGetBonus()) {
+            throw new IllegalArgumentException("Employee with salary greater than 10000");
         }
 
         return bonus;

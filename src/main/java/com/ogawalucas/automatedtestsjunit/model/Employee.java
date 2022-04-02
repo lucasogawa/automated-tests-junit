@@ -28,6 +28,10 @@ public class Employee {
         return this.salary;
     }
 
+    public boolean isValidSalaryToGetBonus() {
+        return this.salary.compareTo(BigDecimal.valueOf(10000)) <= 0;
+    }
+
     public void readjustSalary(BigDecimal readjust) {
         this.salary = this.salary.add(readjust).setScale(2, RoundingMode.HALF_UP);
     }

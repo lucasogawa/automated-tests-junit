@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class BonusServiceTest {
 
@@ -13,10 +14,10 @@ public class BonusServiceTest {
 
     @Test
     public void mustReturn0IfSalaryGreaterThan10000() {
-        var expected = BigDecimal.ZERO;
-        var actual = service.calculate(new Employee(null, null, BigDecimal.valueOf(10001)));
-
-        assertEquals(expected, actual);
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> service.calculate(new Employee(null, null, BigDecimal.valueOf(10001)))
+        );
     }
 
     @Test
